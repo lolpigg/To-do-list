@@ -1,0 +1,8 @@
+C:\Users\igosh\source\repos\джессикаабобусаванялошпед\bin\Debug\джессикаабобусаванялошпед.exe.config
+C:\Users\igosh\source\repos\джессикаабобусаванялошпед\bin\Debug\джессикаабобусаванялошпед.exe
+C:\Users\igosh\source\repos\джессикаабобусаванялошпед\bin\Debug\джессикаабобусаванялошпед.pdb
+C:\Users\igosh\source\repos\джессикаабобусаванялошпед\obj\Debug\джессикаабобусаванялошпед.csproj.AssemblyReference.cache
+C:\Users\igosh\source\repos\джессикаабобусаванялошпед\obj\Debug\джессикаабобусаванялошпед.csproj.SuggestedBindingRedirects.cache
+C:\Users\igosh\source\repos\джессикаабобусаванялошпед\obj\Debug\джессикаабобусаванялошпед.csproj.CoreCompileInputs.cache
+C:\Users\igosh\source\repos\джессикаабобусаванялошпед\obj\Debug\джессикаабобусаванялошпед.exe
+C:\Users\igosh\source\repos\джессикаабобусаванялошпед\obj\Debug\джессикаабобусаванялошпед.pdb
