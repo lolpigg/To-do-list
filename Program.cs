@@ -80,7 +80,18 @@ namespace джессикаабобусаванялошпед
                         Strelochki("Вверх");
                         break;
                     case ConsoleKey.Enter:
-                        DopInf();
+                        if (WhichDay == 0 && WhereStrelka != 0)
+                        {
+                            DopInf(zametki[WhereStrelka - 1]);
+                        }
+                        else if (WhichDay == -1)
+                        {
+                            DopInf(zametki[WhereStrelka + 4]);
+                        }
+                        else if (WhichDay == 2)
+                        {
+                            DopInf(zametki[WhereStrelka + 2]);
+                        }
                         break;
                     case ConsoleKey.Escape:
                         Environment.Exit(0);
@@ -146,42 +157,10 @@ namespace джессикаабобусаванялошпед
                 WhereStrelka = 0;
             }
         }
-        static void DopInf()
+        static void DopInf(Zametka SelectedZametka)
         {
             Console.Clear();
-            if (WhichDay == 0)
-            {
-                if (WhereStrelka == 1)
-                {
-                    Console.WriteLine($"{FirstFirst.name}\n{FirstFirst.data}\n{FirstFirst.description}");
-                }
-                else if (WhereStrelka == 2)
-                {
-                    Console.WriteLine($"{SecondFirst.name}\n{SecondFirst.data}\n{SecondFirst.description}");
-                }
-                else if (WhereStrelka == 3)
-                {
-                    Console.WriteLine($"{ThirdFirst.name}\n{ThirdFirst.data}\n{ThirdFirst.description}");
-                }
-            }
-            else if (WhichDay == -1)
-            {
-                if (WhereStrelka == 1)
-                {
-                    Console.WriteLine($"{FirstMinusSecond.name}\n{FirstMinusSecond.data}\n{FirstMinusSecond.description}");
-                }
-            }
-            else if (WhichDay == 2)
-            {
-                if (WhereStrelka == 1)
-                {
-                    Console.WriteLine($"{FirstThird.name}\n{FirstThird.data}\n{FirstThird.description}");
-                }
-                else if (WhereStrelka == 2)
-                {
-                    Console.WriteLine($"{SecondThird.name}\n{SecondThird.data}\n{SecondThird.description}");
-                }
-            }
+            Console.WriteLine($"{SelectedZametka.name}\n{SelectedZametka.data}\n{SelectedZametka.description}");
             ConsoleKeyInfo i;
             if (WhereStrelka != 0)
             {
