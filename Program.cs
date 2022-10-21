@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,6 +10,11 @@ namespace джессикаабобусаванялошпед
 {
     internal class Program
     {
+        public static int NewZametki = 0;
+        public static int BorderAll = 0;
+        public static int BorderFirst = 3;
+        public static int BorderThird = 2;
+        public static int BorderMinusSecond = 1;
         public static List<Zametka> zametki = new List<Zametka>();
         public static DateTime mydate = new DateTime(2022, 10, 7);
         public static int WhichDay = 0;
@@ -63,7 +70,7 @@ namespace джессикаабобусаванялошпед
             zametki.Add(FirstMinusSecond);
             while (true)
             {
-                Menu(zametki);
+                Menu();
                 ConsoleKeyInfo Choice = Console.ReadKey();
                 switch (Choice.Key)
                 {
@@ -80,21 +87,14 @@ namespace джессикаабобусаванялошпед
                         Strelochki("Вверх");
                         break;
                     case ConsoleKey.Enter:
-                        if (WhichDay == 0 && WhereStrelka != 0)
-                        {
-                            DopInf(zametki[WhereStrelka - 1]);
-                        }
-                        else if (WhichDay == -1)
-                        {
-                            DopInf(zametki[WhereStrelka + 4]);
-                        }
-                        else if (WhichDay == 2)
-                        {
-                            DopInf(zametki[WhereStrelka + 2]);
-                        }
+                        List<Zametka> sortedZametki = zametki.Where(note => note.data == mydate).ToList();
+                        DopInf(sortedZametki[WhereStrelka-1]);
                         break;
                     case ConsoleKey.Escape:
                         Environment.Exit(0);
+                        break;
+                    case ConsoleKey.Spacebar:
+                        NewZametka();
                         break;
                 }
             }
@@ -116,19 +116,25 @@ namespace джессикаабобусаванялошпед
             }
             if (WhichSide == "Вниз")
             {
-                if (WhichDay == 0 && WhereStrelka != 3)
+                if (WhichDay == 0 && WhereStrelka != BorderFirst)
                 {
                     WhereStrelka++;
                     Console.SetCursorPosition(0, WhereStrelka);
                     Console.Write("->");
                 }
-                else if (WhichDay == -1 && WhereStrelka != 1)
+                else if (WhichDay == -1 && WhereStrelka != BorderMinusSecond)
                 {
                     WhereStrelka++;
                     Console.SetCursorPosition(0, WhereStrelka);
                     Console.Write("->");
                 }
-                else if (WhichDay == 2 && WhereStrelka != 2)
+                else if (WhichDay == 2 && WhereStrelka != BorderThird)
+                {
+                    WhereStrelka++;
+                    Console.SetCursorPosition(0, WhereStrelka);
+                    Console.Write("->");
+                }
+                else if (WhichDay != 2 && WhichDay != -1 && WhichDay != 0 && BorderAll!= 0)
                 {
                     WhereStrelka++;
                     Console.SetCursorPosition(0, WhereStrelka);
@@ -157,6 +163,23 @@ namespace джессикаабобусаванялошпед
                 WhereStrelka = 0;
             }
         }
+        static void NewZametka()
+        {
+            Console.Clear();
+            Console.WriteLine("Введите сначала название заметки, затем описание заметки, после дату в формате ГГГГ, ММ, ДД");
+            zametki.Add(new Zametka()
+            {
+                name = Console.ReadLine(),
+                description = Console.ReadLine(),
+                data = Convert.ToDateTime(Console.ReadLine())
+            });
+            Console.Clear();
+            BorderFirst = 1000;
+            BorderMinusSecond = 1000;
+            BorderThird = 1000;
+            BorderAll = 1000;
+
+        }
         static void DopInf(Zametka SelectedZametka)
         {
             Console.Clear();
@@ -173,12 +196,12 @@ namespace джессикаабобусаванялошпед
             Console.SetCursorPosition(0, 0);
             WhereStrelka = 0;
         }
-        static void Menu(List<Zametka> zametkas)
+        static void Menu()
         {
             Console.SetCursorPosition(0, 0);
             Console.Write($"Выбрана дата {mydate}");
             int i = 0;
-            foreach (Zametka note in zametkas)
+            foreach (Zametka note in zametki)
             {
                 if (note.data == mydate)
                 {
